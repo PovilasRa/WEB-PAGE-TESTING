@@ -57,44 +57,6 @@ namespace WEB_PAGE_TESTING
         }
 
 
-
-        public void Navigation(string categorie, string secondcategorie, string product)
-        {
-            IJavaScriptExecutor javascriptExecutor = (IJavaScriptExecutor)driver;
-
-
-            string categorieName = ("//div[contains(@class,'site-block welcome')]//a[contains(text(),'" + categorie + "')]");
-            try
-            {
-                javascriptExecutor.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath(categorieName)));
-            }
-            catch (Exception)
-            {
-                throw new Exception($"Element whoose xpath is:  '{categorieName}', not found.");
-            }
-
-            string secondCategorieName = ("//ul[contains(@class,'new-cat-list')]//span[contains(text(),'" + secondcategorie + "')]");
-            try
-            {
-                javascriptExecutor.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath(secondCategorieName)));
-            }
-            catch (Exception)
-            {
-                throw new Exception($"Element whoose xpath is:  '{secondCategorieName}', not found.");
-            }
-
-            string productName = ("//ul[@class='child-category']//a[contains(text(),'" + product + "')]");
-            try
-            {
-                javascriptExecutor.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath(productName)));
-            }
-            catch (Exception)
-            {
-                throw new Exception($"Element whoose xpath is:  '{product}', not found.");
-            }
-
-        }
-
         public void PriceSortingMinToMax()
         {
 
