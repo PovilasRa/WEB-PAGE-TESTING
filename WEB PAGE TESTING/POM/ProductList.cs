@@ -11,9 +11,9 @@ namespace WEB_PAGE_TESTING.POM
     {
         IWebDriver driver;
         GeneralMethods generalMethods;
-        string FirstProductXpath = "(//a[contains(@class,'product-image')])[1]";
-        string ButtonPriceSortByXpath = "//span[contains(@class,'sort-icon')]";
-        string ButtonPriceMinToMaxXpath = "";
+        string firstProductXpath = "(//a[contains(@class,'product-image')])[1]";
+        string buttonPriceSortByXpath = "//span[contains(@class,'sort-icon')]";
+        string buttonPriceMinToMaxXpath = "";
 
         public ProductList(IWebDriver driver)
         {
@@ -23,14 +23,14 @@ namespace WEB_PAGE_TESTING.POM
 
         public void OpenFirstProduct()
         {
-            generalMethods.ClickByJavaScript(FirstProductXpath);
+            generalMethods.ClickByJavaScript(firstProductXpath);
         }
 
 
         public void ChoosePriceMinToMax()
         {
-            generalMethods.ClickElementBy(ButtonPriceSortByXpath);
-            generalMethods.ClickElementBy(ButtonPriceMinToMaxXpath);
+            generalMethods.ClickElementBy(buttonPriceSortByXpath);
+            generalMethods.ClickElementBy(buttonPriceMinToMaxXpath);
 
 
         }

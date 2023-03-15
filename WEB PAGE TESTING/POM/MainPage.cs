@@ -17,40 +17,29 @@ namespace WEB_PAGE_TESTING.POM
             generalMethods = new GeneralMethods(driver);
         }
 
+       
+
+        public string Get1stCategoryListXpath(string firstcategorielist)
+        {
+            return "//ul[contains(@class,'submenu')]//a[contains(text(),'"+ firstcategorielist+"')]";
+        }
+
+        public string Get2ndCategoryListXpath(string secondcategorielist)
+        {
+            return "//div[contains(@class,'only-desktop')]//a[contains(text(),'" + secondcategorielist + "')]";
+        }
+
+        public string Get3rdCategoryListXpath(string thirdcategorielist)
+        {
+            return "//ul[@class='child-category']//a[contains(text(),'" + thirdcategorielist + "')";
+        }
+        
+
         public void NavigateTo(string categorie, string secondcategorie, string product)
         {
-            IJavaScriptExecutor javascriptExecutor = (IJavaScriptExecutor)driver;
-
-
-            string categorieName = ("//div[contains(@class,'site-block welcome')]//a[contains(text(),'" + categorie + "')]");
-            try
-            {
-                javascriptExecutor.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath(categorieName)));
-            }
-            catch (Exception)
-            {
-                throw new Exception($"Element whoose xpath is:  '{categorieName}', not found.");
-            }
-
-            string secondCategorieName = ("//ul[contains(@class,'new-cat-list')]//span[contains(text(),'" + secondcategorie + "')]");
-            try
-            {
-                javascriptExecutor.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath(secondCategorieName)));
-            }
-            catch (Exception)
-            {
-                throw new Exception($"Element whoose xpath is:  '{secondCategorieName}', not found.");
-            }
-
-            string productName = ("//ul[@class='child-category']//a[contains(text(),'" + product + "')]");
-            try
-            {
-                javascriptExecutor.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath(productName)));
-            }
-            catch (Exception)
-            {
-                throw new Exception($"Element whoose xpath is:  '{product}', not found.");
-            }
+            generalMethods.ClickElementBy(Get1stCategoryListXpath(categorie));
+            generalMethods.ClickElementBy(Get2ndCategoryListXpath(secondcategorie));
+            generalMethods.ClickElementBy(Get3rdCategoryListXpath(product));
 
         }
     }

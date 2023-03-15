@@ -12,8 +12,8 @@ namespace WEB_PAGE_TESTING.POM
         IWebDriver driver;
         GeneralMethods generalMethods;
 
-        string SearchFieldXpath = "//input[contains(@class,'main-search-input') and @autocomplete=\"off\"]";
-        string SearchButtonXpath = "//div[@class=\"main-search__submit\"]";
+        string searchFieldXpath = "//input[contains(@class,'main-search-input') and @autocomplete=\"off\"]";
+        string searchButtonXpath = "//div[@class=\"main-search__submit\"]";
 
 
         public TopMenu(IWebDriver driver)
@@ -24,12 +24,12 @@ namespace WEB_PAGE_TESTING.POM
 
         public void SearchByText(string text)
         {
-            generalMethods.EnterTextBy(SearchFieldXpath, text);
-            generalMethods.ClickElementBy(SearchButtonXpath);
+            generalMethods.EnterTextBy(searchFieldXpath, text);
+            generalMethods.ClickElementBy(searchButtonXpath);
         }
 
 
-        public void clickLoginButton()
+        public void ClickLoginButton()
         {
             By loginButton = By.XPath("//strong[contains(@class,'user-block__title')]");
             driver.FindElement(loginButton).Click();

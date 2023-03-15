@@ -38,7 +38,7 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
             TopMenu TopMenu = new TopMenu(driver);
             LoginMenu login = new LoginMenu(driver);
 
-            TopMenu.clickLoginButton();
+            TopMenu.ClickLoginButton();
             login.enterMailPass();
             login.clickLoginButton();
             string name = "Testas";

@@ -12,9 +12,9 @@ namespace WEB_PAGE_TESTING.POM
         IWebDriver driver;
         GeneralMethods generalMethods;
 
-        string BreadCrumbXpath = "//div[@itemscope='itemscope']//span[contains(@class,'breadcrumbs__item')]";
-        string ProductPriceXpath = "//div[contains(@class,'product-price')]//span[@class=\"price\"]";
-        string ProductFeatureXpath = "//div[@id='description-anchor']";
+        string breadCrumbXpath = "//div[@itemscope='itemscope']//span[contains(@class,'breadcrumbs__item')]";
+        string productPriceXpath = "//div[contains(@class,'product-price')]//span[@class=\"price\"]";
+        string productFeatureXpath = "//div[@id='description-anchor']";
 
         public ProductCard(IWebDriver driver)
         {
@@ -24,15 +24,15 @@ namespace WEB_PAGE_TESTING.POM
 
         public void CheckBreadCrumb()
         {
-            generalMethods.CheckElementIsVisible(BreadCrumbXpath);
+            generalMethods.CheckElementIsVisible(breadCrumbXpath);
         }
         public void CheckProductPrice()
         {
-            generalMethods.CheckElementIsVisible(ProductPriceXpath);
+            generalMethods.CheckElementIsVisible(productPriceXpath);
         }
         public void CheckProductFeaturesTable()
         {
-            generalMethods.CheckElementIsVisible(ProductFeatureXpath);
+            generalMethods.CheckElementIsVisible(productFeatureXpath);
 
         }
 

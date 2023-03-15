@@ -27,7 +27,7 @@ namespace WEB_PAGE_TESTING
             catch (Exception)
             {
 
-                throw new Exception(($"Element whoose xpath is:  '{xpath}', not found."))
+                throw new Exception($"Element whoose xpath is:  '{xpath}', not found.");
             }
             
         }
@@ -47,6 +47,7 @@ namespace WEB_PAGE_TESTING
 
         public void ClickByJavaScript(string xpath)
         {
+           
             IJavaScriptExecutor javascriptExecutor = (IJavaScriptExecutor)driver;
             javascriptExecutor.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath(xpath)));
         }
