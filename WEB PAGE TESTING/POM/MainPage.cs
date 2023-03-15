@@ -17,7 +17,7 @@ namespace WEB_PAGE_TESTING.POM
             generalMethods = new GeneralMethods(driver);
         }
 
-        public void Navigation(string categorie, string secondcategorie, string product)
+        public void NavigateTo(string categorie, string secondcategorie, string product)
         {
             IJavaScriptExecutor javascriptExecutor = (IJavaScriptExecutor)driver;
 

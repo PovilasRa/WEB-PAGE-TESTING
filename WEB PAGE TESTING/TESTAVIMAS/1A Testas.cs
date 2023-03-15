@@ -63,10 +63,10 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
         [Test]
         public static void priceSortingTest()
         {
-            GeneralMethods general = new GeneralMethods(driver);
+            MainPage Mainpage = new MainPage(driver);
             ProductList productList = new ProductList(driver);
 
-            general.Navigation("Buitinė", "Stambi", "Vandens šildytuvai");
+            Mainpage.NavigateTo("Buitinė", "Stambi", "Vandens šildytuvai");
 
 
 

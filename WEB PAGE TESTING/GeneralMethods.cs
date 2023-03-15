@@ -17,11 +17,19 @@ namespace WEB_PAGE_TESTING
         }
         public void ClickElementBy(string xpath)
         {
+            try
+            {
+                IWebElement el = driver.FindElement(By.XPath(xpath));
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript("arguments[0].scrollIntoView(true);", el);
+                el.Click();
+            }
+            catch (Exception)
+            {
 
-            IWebElement el = driver.FindElement(By.XPath(xpath));
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView(true);", el);
-            el.Click();
+                throw new Exception(($"Element whoose xpath is:  '{xpath}', not found."))
+            }
+            
         }
         public void EnterTextBy(string xpath, string text)
         {
