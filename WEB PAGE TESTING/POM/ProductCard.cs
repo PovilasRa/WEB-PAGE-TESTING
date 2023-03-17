@@ -15,6 +15,7 @@ namespace WEB_PAGE_TESTING.POM
         string breadCrumbXpath = "//div[@itemscope='itemscope']//span[contains(@class,'breadcrumbs__item')]";
         string productPriceXpath = "//div[contains(@class,'product-price')]//span[@class=\"price\"]";
         string productFeatureXpath = "//div[@id='description-anchor']";
+        string basketIconXpath = "//div[contains(@class,'product-controls')]//button[@name='button']";
 
         public ProductCard(IWebDriver driver)
         {
@@ -22,13 +23,18 @@ namespace WEB_PAGE_TESTING.POM
             generalMethods = new GeneralMethods(driver);
         }
 
-        public void CheckBreadCrumb()
+        public void CheckBreadCrumbExist()
         {
             generalMethods.CheckElementIsVisible(breadCrumbXpath);
         }
         public void CheckProductPrice()
         {
             generalMethods.CheckElementIsVisible(productPriceXpath);
+        }
+
+        public void CheckBasketIcon()
+        {
+            generalMethods.CheckElementIsVisible(basketIconXpath);
         }
         public void CheckProductFeaturesTable()
         {

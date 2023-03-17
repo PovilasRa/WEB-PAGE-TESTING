@@ -16,8 +16,14 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
         private static string driverPath = "C:\\Users\\Mokymai\\Desktop\\chromedriver_win32\\chromedriver.exe";
         static IWebDriver driver;
 
+        TopMenu topMenu;
+        ProductList productList;
+        ProductCard productCard;
+        MainPage mainPage;
+        LoginMenu loginMenu;
+
         [SetUp]
-        public static void SETUP()
+        public void SETUP()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--disable-notifications");
@@ -29,48 +35,47 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             Thread.Sleep(1000);
             driver.FindElement(By.XPath("//div[@id='cookie-btns']//a[@class='c-button']")).Click();
+
+            topMenu = new TopMenu(driver);
+            productList = new ProductList(driver);
+            productCard = new ProductCard(driver);
+            mainPage = new MainPage(driver);
+            loginMenu = new LoginMenu(driver);
         }
 
         [Test]
-        public static void loginTest()
+        public void LoginTest()
         {
 
-            TopMenu TopMenu = new TopMenu(driver);
-            LoginMenu login = new LoginMenu(driver);
-
-            TopMenu.ClickLoginButton();
-            login.enterMailPass();
-            login.clickLoginButton();
-            string name = "Testas";
-            Assert.AreEqual(TopMenu.GetUserNameText(), name, "Wrong Name!!!!");
+            topMenu.ClickLoginButton();
+            loginMenu.EnterEmailAndPassword();
+            loginMenu.PressLoginButton();
+            loginMenu.ActualUserNameText();
+            Assert.AreEqual(topMenu.GetUserNameText(), loginMenu.ActualUserNameText(), "Wrong Name!!!!");
         }
 
         [Test]
-        public static void productCardTest()
+        public void ProductCardTest()
         {
-            TopMenu TopMenu = new TopMenu(driver);
-            ProductList productList = new ProductList(driver);
-            ProductCard productCard = new ProductCard(driver);
-
-
-            TopMenu.SearchByText("Iphone 11");
+           
+            topMenu.SearchByText("Iphone 11");
             productList.OpenFirstProduct();
-            productCard.CheckBreadCrumb();
+            productCard.CheckBreadCrumbExist();
             productCard.CheckProductPrice();
+            productCard.CheckBasketIcon();
             productCard.CheckProductFeaturesTable();
         }
 
         [Test]
-        public static void priceSortingTest()
+        public void PriceSortingTest()
         {
-            MainPage Mainpage = new MainPage(driver);
-            ProductList productList = new ProductList(driver);
-
-            Mainpage.NavigateTo("Buitinė", "Stambi", "Vandens šildytuvai");
-
+           
+            mainPage.NavigateTo("Buitinė", "Stambi", "Vandens šildytuvai");
+            productList.ChoosePriceMinToMax();
 
 
-
+            //reiktu pasidaryt du atskirus xpath tikrai kainai ir kainai su nuolaida ir tada rasyti
+            //kad jeigu prekeje yra dvi kainos imk kazkuria kaina kurios tau reikia
         }
     }
 }

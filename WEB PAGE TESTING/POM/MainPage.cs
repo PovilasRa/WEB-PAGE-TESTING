@@ -19,27 +19,27 @@ namespace WEB_PAGE_TESTING.POM
 
        
 
-        public string Get1stCategoryListXpath(string firstcategorielist)
+        public string Get1stCategoryListXpath(string firstcategoriename)
         {
-            return "//ul[contains(@class,'submenu')]//a[contains(text(),'"+ firstcategorielist+"')]";
+            return "//ul[@class='submenu-lvl1__list']//a[contains(text(),'"+ firstcategoriename+"') and contains(@class,'submenu-lvl1')]";
         }
 
-        public string Get2ndCategoryListXpath(string secondcategorielist)
+        public string Get2ndCategoryListXpath(string secondcategoriename)
         {
-            return "//div[contains(@class,'only-desktop')]//a[contains(text(),'" + secondcategorielist + "')]";
+            return "//div[contains(@class,'only-desktop')]//a[contains(text(),'" + secondcategoriename + "')]";
         }
 
-        public string Get3rdCategoryListXpath(string thirdcategorielist)
+        public string Get3rdCategoryListXpath(string thirdcategoriename)
         {
-            return "//ul[@class='child-category']//a[contains(text(),'" + thirdcategorielist + "')";
+            return "//div[contains(@class,'category-list')]//img[contains(@title,'"+thirdcategoriename+"')]";
         }
         
 
         public void NavigateTo(string categorie, string secondcategorie, string product)
         {
-            generalMethods.ClickElementBy(Get1stCategoryListXpath(categorie));
-            generalMethods.ClickElementBy(Get2ndCategoryListXpath(secondcategorie));
-            generalMethods.ClickElementBy(Get3rdCategoryListXpath(product));
+            generalMethods.ClickByJavaScript(Get1stCategoryListXpath(categorie));
+            generalMethods.ClickByJavaScript(Get2ndCategoryListXpath(secondcategorie));
+            generalMethods.ClickByJavaScript(Get3rdCategoryListXpath(product));
 
         }
     }

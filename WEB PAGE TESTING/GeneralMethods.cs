@@ -65,7 +65,7 @@ namespace WEB_PAGE_TESTING
             }
         }
 
-
+       
         public void PriceSortingMinToMax()
         {
 

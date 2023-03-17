@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V108.Overlay;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,25 +17,29 @@ namespace WEB_PAGE_TESTING.POM
             this.driver = driver;
             generalMethods = new GeneralMethods(driver);
         }
+        string[] userdata = System.IO.File.ReadAllLines(@"C:\Users\Mokymai\Desktop\TESTAVIMAS\Prisijungimoduomenys.txt");
 
-        public void enterMailPass()
+        public void EnterEmailAndPassword()
         {
-            string email = "Testavimas@gmail.com";
-            string password = "Testavimas";
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("window.scrollTo(0, 250)");
+           
+
             By enterEmail = By.XPath("//input[@type='email']");
-            driver.FindElement(enterEmail).SendKeys(email);
+            driver.FindElement(enterEmail).SendKeys(userdata[1]);
             By enterPassword = By.XPath("//input[@type='password']");
-            driver.FindElement(enterPassword).SendKeys(password);
+            driver.FindElement(enterPassword).SendKeys(userdata[2]);
         }
 
-        public void clickLoginButton()
+        public void PressLoginButton()
         {
-            By clickLoginTo = By.XPath("//input[@value='Prisijungti']");
-            driver.FindElement(clickLoginTo).Click();
+            string loginButton = "//input[@type='submit']";
+            generalMethods.ClickByJavaScript(loginButton);
         }
 
+        public string ActualUserNameText()
+        {
+
+            return userdata[0];
+        }
     }
 }
 

@@ -12,9 +12,11 @@ namespace WEB_PAGE_TESTING.POM
         IWebDriver driver;
         GeneralMethods generalMethods;
         string firstProductXpath = "(//a[contains(@class,'product-image')])[1]";
-        string buttonPriceSortByXpath = "//span[contains(@class,'sort-icon')]";
-        string buttonPriceMinToMaxXpath = "";
+        string buttonPriceSortByXpath = "//div[contains(@class,\"desk\")]//span[@aria-readonly=\"true\"]";
+        string buttonPriceMinToMaxXpath = "//span[@class='select2-results']//li[contains(text(),'Kaina nuo žemiausios')]";
 
+
+       
         public ProductList(IWebDriver driver)
         {
             this.driver = driver;
@@ -31,7 +33,6 @@ namespace WEB_PAGE_TESTING.POM
         {
             generalMethods.ClickElementBy(buttonPriceSortByXpath);
             generalMethods.ClickElementBy(buttonPriceMinToMaxXpath);
-
 
         }
 
