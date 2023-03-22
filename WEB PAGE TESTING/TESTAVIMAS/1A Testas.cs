@@ -32,7 +32,7 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
             //driver = new ChromeDriver(driverPath);
             driver.Manage().Window.Maximize();
             driver.Url = "https://www.1a.lt/";
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             Thread.Sleep(1000);
             driver.FindElement(By.XPath("//div[@id='cookie-btns']//a[@class='c-button']")).Click();
 
@@ -72,6 +72,7 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
            
             mainPage.NavigateTo("Buitinė", "Stambi", "Vandens šildytuvai");
             productList.ChoosePriceMinToMax();
+            productList.CheckPriceIsSorted();
 
 
             //reiktu pasidaryt du atskirus xpath tikrai kainai ir kainai su nuolaida ir tada rasyti
