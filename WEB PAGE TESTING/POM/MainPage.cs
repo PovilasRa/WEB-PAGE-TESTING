@@ -17,8 +17,6 @@ namespace WEB_PAGE_TESTING.POM
             generalMethods = new GeneralMethods(driver);
         }
 
-       
-
         public string Get1stCategoryListXpath(string firstcategoriename)
         {
             return "//ul[@class='submenu-lvl1__list']//a[contains(text(),'"+ firstcategoriename+"') and contains(@class,'submenu-lvl1')]";
@@ -40,7 +38,6 @@ namespace WEB_PAGE_TESTING.POM
             generalMethods.ClickByJavaScript(Get1stCategoryListXpath(categorie));
             generalMethods.ClickByJavaScript(Get2ndCategoryListXpath(secondcategorie));
             generalMethods.ClickByJavaScript(Get3rdCategoryListXpath(product));
-
         }
     }
 }

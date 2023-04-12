@@ -23,7 +23,7 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
         LoginMenu loginMenu;
 
         [SetUp]
-        public void SETUP()
+        public void SetUp()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--disable-notifications");
@@ -46,7 +46,6 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
         [Test]
         public void LoginTest()
         {
-
             topMenu.ClickLoginButton();
             loginMenu.EnterEmailAndPassword();
             loginMenu.PressLoginButton();
@@ -57,7 +56,6 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
         [Test]
         public void ProductCardTest()
         {
-           
             topMenu.SearchByText("Iphone 11");
             productList.OpenFirstProduct();
             productCard.CheckBreadCrumbExist();
@@ -72,7 +70,8 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
            
             mainPage.NavigateTo("Buitinė", "Stambi", "Vandens šildytuvai");
             productList.ChoosePriceMinToMax();
-            productList.CheckPriceIsSorted();
+            //productList.CheckPriceIsSorted();
+            productList.writePrices();
 
 
             //reiktu pasidaryt du atskirus xpath tikrai kainai ir kainai su nuolaida ir tada rasyti

@@ -42,12 +42,10 @@ namespace WEB_PAGE_TESTING
             Actions action = new Actions(driver);
             action.MoveToElement(driver.FindElement(By.XPath(xpath))).Perform();
             driver.FindElement(By.XPath(xpath)).Click();
-
         }
 
         public void ClickByJavaScript(string xpath)
         {
-           
             IJavaScriptExecutor javascriptExecutor = (IJavaScriptExecutor)driver;
             javascriptExecutor.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath(xpath)));
         }
@@ -65,11 +63,7 @@ namespace WEB_PAGE_TESTING
             }
         }
 
-       
-        public void PriceSortingMinToMax()
-        {
-
-        }
+        
 
 
     }

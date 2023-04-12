@@ -39,7 +39,6 @@ namespace WEB_PAGE_TESTING.POM
         public void CheckProductFeaturesTable()
         {
             generalMethods.CheckElementIsVisible(productFeatureXpath);
-
         }
 
     }

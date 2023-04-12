@@ -17,12 +17,10 @@ namespace WEB_PAGE_TESTING.POM
             this.driver = driver;
             generalMethods = new GeneralMethods(driver);
         }
-        string[] userdata = System.IO.File.ReadAllLines(@"C:\Users\Mokymai\Desktop\TESTAVIMAS\Prisijungimoduomenys.txt");
+        string[] userdata = System.IO.File.ReadAllLines(@"Prisijungimoduomenys.txt");
 
         public void EnterEmailAndPassword()
         {
-           
-
             By enterEmail = By.XPath("//input[@type='email']");
             driver.FindElement(enterEmail).SendKeys(userdata[1]);
             By enterPassword = By.XPath("//input[@type='password']");
@@ -37,7 +35,6 @@ namespace WEB_PAGE_TESTING.POM
 
         public string ActualUserNameText()
         {
-
             return userdata[0];
         }
     }
