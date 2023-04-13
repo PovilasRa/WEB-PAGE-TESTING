@@ -45,7 +45,7 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
 
         [Test]
         public void LoginTest()
-        {
+        { 
             topMenu.ClickLoginButton();
             loginMenu.EnterEmailAndPassword();
             loginMenu.PressLoginButton();
@@ -67,15 +67,10 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
         [Test]
         public void PriceSortingTest()
         {
-           
             mainPage.NavigateTo("Buitinė", "Stambi", "Vandens šildytuvai");
             productList.ChoosePriceMinToMax();
-            //productList.CheckPriceIsSorted();
-            productList.writePrices();
-
-
-            //reiktu pasidaryt du atskirus xpath tikrai kainai ir kainai su nuolaida ir tada rasyti
-            //kad jeigu prekeje yra dvi kainos imk kazkuria kaina kurios tau reikia
+            productList.getPriceList();
+            productList.checkListSortedMinToMax();
         }
     }
 }

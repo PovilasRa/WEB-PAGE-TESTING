@@ -12,30 +12,29 @@ namespace WEB_PAGE_TESTING.POM
     {
         IWebDriver driver;
         GeneralMethods generalMethods;
+        string[] userData = System.IO.File.ReadAllLines(@"Prisijungimoduomenys.txt");
+        string loginButton = "//input[@type='submit']";
+        By emailInputFieldXpath = By.XPath("//input[@type='email']");
+
         public LoginMenu(IWebDriver driver)
         {
             this.driver = driver;
             generalMethods = new GeneralMethods(driver);
         }
-        string[] userdata = System.IO.File.ReadAllLines(@"Prisijungimoduomenys.txt");
-
         public void EnterEmailAndPassword()
         {
-            By enterEmail = By.XPath("//input[@type='email']");
-            driver.FindElement(enterEmail).SendKeys(userdata[1]);
+            //By enterEmail = By.XPath("//input[@type='email']");
+            driver.FindElement(emailInputFieldXpath).SendKeys(userData[1]); //kaip cia padaryti xpath stringe??
             By enterPassword = By.XPath("//input[@type='password']");
-            driver.FindElement(enterPassword).SendKeys(userdata[2]);
+            driver.FindElement(enterPassword).SendKeys(userData[2]);
         }
-
         public void PressLoginButton()
         {
-            string loginButton = "//input[@type='submit']";
             generalMethods.ClickByJavaScript(loginButton);
         }
-
         public string ActualUserNameText()
         {
-            return userdata[0];
+            return userData[0];
         }
     }
 }
