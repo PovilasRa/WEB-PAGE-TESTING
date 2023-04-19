@@ -85,7 +85,7 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
         }
 
         [Test]
-        public void PriceSortingTest()
+        public void PriceSortingMinToMaxTest()
         {
             mainPage.NavigateTo("Buitinė", "Stambi", "Vandens šildytuvai");
             productList.ChoosePriceMinToMax();
