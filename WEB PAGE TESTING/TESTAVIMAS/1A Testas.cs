@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WEB_PAGE_TESTING.POM;
+using OpenQA.Selenium.Interactions;
+using System.IO;
+using NUnit.Framework.Interfaces;
 
 namespace WEB_PAGE_TESTING.TESTAVIMAS
 {
     internal class _1A_Testas
     {
-        private static string driverPath = "C:\\Users\\Mokymai\\Desktop\\chromedriver_win32\\chromedriver.exe";
+        //private static string driverPath = "C:\\Users\\Mokymai\\Desktop\\chromedriver_win32\\chromedriver.exe";
         static IWebDriver driver;
 
         TopMenu topMenu;
@@ -21,36 +24,54 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
         ProductCard productCard;
         MainPage mainPage;
         LoginMenu loginMenu;
+        GeneralMethods generalMethods;
 
         [SetUp]
         public void SetUp()
         {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArguments("--disable-notifications");
-            driver = new ChromeDriver(options);
-
-            //driver = new ChromeDriver(driverPath);
-            driver.Manage().Window.Maximize();
-            driver.Url = "https://www.1a.lt/";
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-            Thread.Sleep(1000);
-            driver.FindElement(By.XPath("//div[@id='cookie-btns']//a[@class='c-button']")).Click();
-
+            driver = GeneralMethods.CreateDriverWithoutNotification();
+           
             topMenu = new TopMenu(driver);
             productList = new ProductList(driver);
             productCard = new ProductCard(driver);
             mainPage = new MainPage(driver);
             loginMenu = new LoginMenu(driver);
+            generalMethods = new GeneralMethods(driver);
+
+            driver.Manage().Window.Maximize();
+            driver.Url = "https://www.1a.lt/";
+            // Thread sleep todėl, kad juda mygtukas ir nevisada spaudžia
+            Thread.Sleep(1000); 
+            generalMethods.WaitElement("//div[@id='cookie-btns']//a[@class='c-button']", driver).Click();
+           
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            {
+                var name =
+                    $"{TestContext.CurrentContext.Test.MethodName}" +
+                    $" Error at " +
+                    $"{DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH'_'mm'_'ss")}";
+
+                GeneralMethods.TakeScreenShot(driver, name);
+
+                File.WriteAllText(
+                    $"Screenshots\\{name}.txt",
+                    TestContext.CurrentContext.Result.Message);
+            }
+            driver.Quit();
+        }
+           
         [Test]
         public void LoginTest()
         { 
             topMenu.ClickLoginButton();
             loginMenu.EnterEmailAndPassword();
             loginMenu.PressLoginButton();
-            loginMenu.ActualUserNameText();
-            Assert.AreEqual(topMenu.GetUserNameText(), loginMenu.ActualUserNameText(), "Wrong Name!!!!");
+            Assert.AreEqual(topMenu.GetUserNameText(), loginMenu.ActualUserNameText, "Wrong Name!!!!");
         }
 
         [Test]

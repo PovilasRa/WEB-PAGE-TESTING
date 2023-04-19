@@ -11,6 +11,7 @@ namespace WEB_PAGE_TESTING.POM
     {
         IWebDriver driver;
         GeneralMethods generalMethods;
+
         public MainPage(IWebDriver driver)
         {
             this.driver = driver;
@@ -32,7 +33,6 @@ namespace WEB_PAGE_TESTING.POM
             return "//div[contains(@class,'category-list')]//img[contains(@title,'"+thirdcategoriename+"')]";
         }
         
-
         public void NavigateTo(string categorie, string secondcategorie, string product)
         {
             generalMethods.ClickByJavaScript(Get1stCategoryListXpath(categorie));

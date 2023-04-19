@@ -14,32 +14,39 @@ namespace WEB_PAGE_TESTING.POM
     {
         IWebDriver driver;
         GeneralMethods generalMethods;
+
         string firstProductXpath = "(//a[contains(@class,'product-image')])[1]";
-        string buttonPriceSortByXpath = "//div[contains(@class,\"desk\")]//span[@aria-readonly=\"true\"]";
+        string buttonPriceSortByXpath = "//div[contains(@class,'desk')]//span[@aria-readonly='true']";
         string buttonPriceMinToMaxXpath = "//span[@class='select2-results']//li[contains(text(),'Kaina nuo žemiausios')]";
+
         public ProductList(IWebDriver driver)
         {
             this.driver = driver;
             generalMethods = new GeneralMethods(driver);
         }
+
         public void OpenFirstProduct()
         {
             generalMethods.ClickByJavaScript(firstProductXpath);
         }
+
         public void ChoosePriceMinToMax()
         {
             generalMethods.ClickElementBy(buttonPriceSortByXpath);
             generalMethods.ClickElementBy(buttonPriceMinToMaxXpath);
         }
+
         public string getPrice(int price)
         {
             return "(//div[@class=\"catalog-taxons-product__hover\"])[" + price +"]//span[contains(text(),'€')]";
         }
+
         private double parsePrice(string from)
         {
             var split = from.Split(' ')[0];
             return double.Parse(split.Replace(',', '.'));
         }
+
         public List<double> getPriceList()
         {
             var allPricesList = new List<double>();
@@ -62,19 +69,14 @@ namespace WEB_PAGE_TESTING.POM
                 }
             }
             return allPricesList;
-
         }
+
         public void checkListSortedMinToMax()
         {
             var sarasas = getPriceList();
-            for (int i = 1; i < .Count; i++)
+            for (int i = 1; i < sarasas.Count; i++)
             {
-                if (getPriceList()[i - 1] < getPriceList()[i])
-                {
-                    break;
-                }
-                //ar gerai cia???
-                else
+                if (sarasas[i - 1] > sarasas[i])
                 {
                     Assert.Fail("Price isn't sorted!!!!");
                 }

@@ -1,36 +1,40 @@
 ﻿using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Chrome;
+using System.Threading;
+using OpenQA.Selenium.Support.Extensions;
+using System.IO;
 
 namespace WEB_PAGE_TESTING
 {
     public class GeneralMethods
     {
         IWebDriver driver;
+
         public GeneralMethods(IWebDriver driver)
         {
             this.driver = driver;
         }
+
         public void ClickElementBy(string xpath)
         {
+            var element = WaitElement(xpath, driver); 
+
             try
             {
                 IWebElement el = driver.FindElement(By.XPath(xpath));
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-                js.ExecuteScript("arguments[0].scrollIntoView(true);", el);
+                js.ExecuteScript("arguments[0].scrollIntoView(true);", el, element);
                 el.Click();
             }
             catch (Exception)
             {
-
                 throw new Exception($"Element whoose xpath is:  '{xpath}', not found.");
             }
-            
         }
+
         public void EnterTextBy(string xpath, string text)
         {
             By searchField = By.XPath(xpath);
@@ -47,9 +51,9 @@ namespace WEB_PAGE_TESTING
         public void ClickByJavaScript(string xpath)
         {
             IJavaScriptExecutor javascriptExecutor = (IJavaScriptExecutor)driver;
-            javascriptExecutor.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath(xpath)));
+            var element = WaitElement(xpath, driver);
+            javascriptExecutor.ExecuteScript("arguments[0].click();", element);
         }
-
 
         public void CheckElementIsVisible(string xpath)
         {
@@ -63,9 +67,40 @@ namespace WEB_PAGE_TESTING
             }
         }
 
-        
+        public IWebElement WaitElement(string xPath, IWebDriver driver)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.PollingInterval = TimeSpan.FromSeconds(0.5);
+            return wait.Until(d => d.FindElement(By.XPath(xPath)));
+        }
 
+        public static IWebDriver CreateDriverWithoutNotification()
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--disable-notifications");
+            return new ChromeDriver(options);
+        }
 
+        public static void TakeScreenShot(IWebDriver driver, string fileName)
+        {
+            var screenshotDriver = driver as ITakesScreenshot;
+            Screenshot screenshot = screenshotDriver.GetScreenshot();
+
+            if (!Directory.Exists("Screenshots"))
+            {
+                Directory.CreateDirectory("Screenshots");
+            }
+
+            screenshot.SaveAsFile(
+                $"Screenshots\\{fileName}.png",
+                ScreenshotImageFormat.Png);
+        }
+
+        public void TakeScreenshot()
+        {
+            Screenshot ss = driver.TakeScreenshot();
+            string screenshot = "screenshot" + DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss") + ".jpg";
+            ss.SaveAsFile("C:\\Users\\Mokymai\\source\\repos\\WEB PAGE TESTING\\Nuotraukos\"" + screenshot);
+        }
     }
 }
-
