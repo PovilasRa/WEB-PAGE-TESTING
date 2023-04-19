@@ -20,6 +20,7 @@ namespace WEB_PAGE_TESTING
 
         public void ClickElementBy(string xpath)
         {
+            // O kodel sitas reikalingas?
             var element = WaitElement(xpath, driver); 
 
             try
