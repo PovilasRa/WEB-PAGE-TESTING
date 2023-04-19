@@ -58,14 +58,14 @@ namespace WEB_PAGE_TESTING.POM
                 {
                     allPricesList.Add(parsePrice(driver.FindElement(By.XPath("(//div[contains(@class,'products-container')]" +
                         "//span[contains(@class,'item-price')]/span[1])[" + i + "]")).Text));
-                    //Console.WriteLine(allPricesList[i-1]);
+                    
                 }
 
                 else if (driver.FindElements(By.XPath(getPrice(i))).Count == 2)
                 {
                     var priceWithDiscount = price[0].Text;
                     allPricesList.Add(parsePrice(priceWithDiscount));
-                    //Console.WriteLine(allPricesList[i-1]);
+                    
                 }
             }
             return allPricesList;
