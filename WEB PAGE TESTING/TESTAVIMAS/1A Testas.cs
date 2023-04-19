@@ -40,10 +40,9 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
 
             driver.Manage().Window.Maximize();
             driver.Url = "https://www.1a.lt/";
-            // Thread sleep todėl, kad juda mygtukas ir nevisada spaudžia
+            // Thread sleep todėl, kad juda mygtukas ir nevisada spaudžia bei failina testas.
             Thread.Sleep(1000); 
             generalMethods.WaitElement("//div[@id='cookie-btns']//a[@class='c-button']", driver).Click();
-           
         }
 
         [TearDown]

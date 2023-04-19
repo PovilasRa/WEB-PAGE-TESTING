@@ -95,12 +95,5 @@ namespace WEB_PAGE_TESTING
                 $"Screenshots\\{fileName}.png",
                 ScreenshotImageFormat.Png);
         }
-
-        public void TakeScreenshot()
-        {
-            Screenshot ss = driver.TakeScreenshot();
-            string screenshot = "screenshot" + DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss") + ".jpg";
-            ss.SaveAsFile("C:\\Users\\Mokymai\\source\\repos\\WEB PAGE TESTING\\Nuotraukos\"" + screenshot);
-        }
     }
 }
