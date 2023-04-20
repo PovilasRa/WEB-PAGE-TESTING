@@ -20,15 +20,13 @@ namespace WEB_PAGE_TESTING
 
         public void ClickElementBy(string xpath)
         {
-            // O kodel sitas reikalingas?
-            var element = WaitElement(xpath, driver); 
-
+            
             try
             {
-                IWebElement el = driver.FindElement(By.XPath(xpath));
+                var element = WaitElement(xpath, driver);
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-                js.ExecuteScript("arguments[0].scrollIntoView(true);", el, element);
-                el.Click();
+                js.ExecuteScript("arguments[0].scrollIntoView(true);", element);
+                element.Click();
             }
             catch (Exception)
             {

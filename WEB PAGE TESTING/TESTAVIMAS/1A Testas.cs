@@ -89,8 +89,8 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
         {
             mainPage.NavigateTo("Buitinė", "Stambi", "Vandens šildytuvai");
             productList.ChoosePriceMinToMax();
-            productList.getPriceList();
-            productList.checkListSortedMinToMax();
+            productList.GetPriceList();
+            productList.CheckListSortedMinToMax();
         }
     }
 }

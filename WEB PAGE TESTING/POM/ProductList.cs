@@ -36,44 +36,44 @@ namespace WEB_PAGE_TESTING.POM
             generalMethods.ClickElementBy(buttonPriceMinToMaxXpath);
         }
 
-        public string getPrice(int price)
+        public string GetPrice(int price)
         {
             return "(//div[@class=\"catalog-taxons-product__hover\"])[" + price +"]//span[contains(text(),'€')]";
         }
 
-        private double parsePrice(string from)
+        private double ParsePrice(string from)
         {
             var split = from.Split(' ')[0];
             return double.Parse(split.Replace(',', '.'));
         }
 
-        public List<double> getPriceList()
+        public List<double> GetPriceList()
         {
             var allPricesList = new List<double>();
             Thread.Sleep(3000);
             for (int i = 1; i < 49; i++)
             {
-                var price = driver.FindElements(By.XPath(getPrice(i)));
+                var price = driver.FindElements(By.XPath(GetPrice(i)));
                 if (price.Count == 1)
                 {
-                    allPricesList.Add(parsePrice(driver.FindElement(By.XPath("(//div[contains(@class,'products-container')]" +
+                    allPricesList.Add(ParsePrice(driver.FindElement(By.XPath("(//div[contains(@class,'products-container')]" +
                         "//span[contains(@class,'item-price')]/span[1])[" + i + "]")).Text));
-                    //Console.WriteLine(allPricesList[i-1]);
+                    
                 }
 
-                else if (driver.FindElements(By.XPath(getPrice(i))).Count == 2)
+                else if (driver.FindElements(By.XPath(GetPrice(i))).Count == 2)
                 {
                     var priceWithDiscount = price[0].Text;
-                    allPricesList.Add(parsePrice(priceWithDiscount));
-                    //Console.WriteLine(allPricesList[i-1]);
+                    allPricesList.Add(ParsePrice(priceWithDiscount));
+                    
                 }
             }
             return allPricesList;
         }
 
-        public void checkListSortedMinToMax()
+        public void CheckListSortedMinToMax()
         {
-            var sarasas = getPriceList();
+            var sarasas = GetPriceList();
             for (int i = 1; i < sarasas.Count; i++)
             {
                 if (sarasas[i - 1] > sarasas[i])
