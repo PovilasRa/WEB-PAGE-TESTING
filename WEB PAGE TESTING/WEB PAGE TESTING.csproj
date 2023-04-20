@@ -68,6 +68,7 @@
     <Compile Include="POM\TopMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TESTAVIMAS\1A Testas.cs" />
+    <Compile Include="TESTAVIMAS\Ivertinimas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

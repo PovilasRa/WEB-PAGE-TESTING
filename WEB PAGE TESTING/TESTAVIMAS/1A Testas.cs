@@ -89,8 +89,16 @@ namespace WEB_PAGE_TESTING.TESTAVIMAS
         {
             mainPage.NavigateTo("Buitinė", "Stambi", "Vandens šildytuvai");
             productList.ChoosePriceMinToMax();
+            // Gerai apie tai jau kalbejom kartą, bet čia jau turi iškvietęs funkciją
+            // kuri gauna sąrašą kainų:
             productList.GetPriceList();
+            // Tada kaip ir logiska butu ta sarasa paduoti cia zemiau:
+            // Arba toje vietoje visai tos fubkcjos nekviesti,
+            // nes CheckListSortedMinToMax funkcijoje dar karta ja kvieti:
             productList.CheckListSortedMinToMax();
+            // Taigi jeigu kviestum tik viena karta
+            // testas veiktu taip pat, bet vietoj 18 sekundžių
+            // Butu bent 12 ar dar maziau :)
         }
     }
 }

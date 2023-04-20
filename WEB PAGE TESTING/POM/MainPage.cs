@@ -18,6 +18,7 @@ namespace WEB_PAGE_TESTING.POM
             generalMethods = new GeneralMethods(driver);
         }
 
+        // Paarametrai prasosi camelCase rašymo būdo -> firstCategorieName
         public string Get1stCategoryListXpath(string firstcategoriename)
         {
             return "//ul[@class='submenu-lvl1__list']//a[contains(text(),'"+ firstcategoriename+"') and contains(@class,'submenu-lvl1')]";

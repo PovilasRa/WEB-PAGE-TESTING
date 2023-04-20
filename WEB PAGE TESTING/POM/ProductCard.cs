@@ -27,7 +27,12 @@ namespace WEB_PAGE_TESTING.POM
         {
             generalMethods.CheckElementIsVisible(breadCrumbXpath);
         }
-
+        // Galima kabinėtis prie pavadinimu,
+        // CheckProductPrice, nelabai ką sako
+        // Aš tikėčiausi pamatęs tokį pavadinimą kad
+        // Patikrins kainors teisingumą ar kažką iš tos serijos
+        // Čia gal reikia kaip aukčiau ar Exist ar IsVisible pridėti
+        // Bet vėl tiesiog pavadinimas..
         public void CheckProductPrice()
         {
             generalMethods.CheckElementIsVisible(productPriceXpath);

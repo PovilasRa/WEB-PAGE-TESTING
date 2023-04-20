@@ -20,7 +20,6 @@ namespace WEB_PAGE_TESTING
 
         public void ClickElementBy(string xpath)
         {
-            
             try
             {
                 var element = WaitElement(xpath, driver);

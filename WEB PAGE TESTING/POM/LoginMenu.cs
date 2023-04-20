@@ -15,6 +15,10 @@ namespace WEB_PAGE_TESTING.POM
 
         string[] userData;
         string loginButton = "//input[@type='submit']";
+        // Čia klausimas ar reikia Xpath kintamojo pavadinime,
+        // nes jau kaip ir By saugai objektus, neblogai
+        // bet aš dar pasvarstyčiau kaip geriau
+        // ir taip ir taip logikos matau
         By emailInputFieldXpath = By.XPath("//input[@type='email']");
         By passwordInputFieldXpath = By.XPath("//input[@type='password']");
 

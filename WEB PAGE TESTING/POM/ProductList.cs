@@ -47,25 +47,29 @@ namespace WEB_PAGE_TESTING.POM
             return double.Parse(split.Replace(',', '.'));
         }
 
+        // Return TYPE LIST
         public List<double> GetPriceList()
         {
             var allPricesList = new List<double>();
+            // Oooo kam čia šitas? Gal jo ir reikia, bet galima kaip nors su Wait'u padaryti?
+            // pvz tiesiog paieskoti / palaukti pirmos kainos:
+            // generalMethods.WaitElement(GetPrice(1), driver);
+
             Thread.Sleep(3000);
             for (int i = 1; i < 49; i++)
             {
                 var price = driver.FindElements(By.XPath(GetPrice(i)));
                 if (price.Count == 1)
                 {
+                    // Del grozio gal reiktu iskelti kaip su GetPrice?
                     allPricesList.Add(ParsePrice(driver.FindElement(By.XPath("(//div[contains(@class,'products-container')]" +
                         "//span[contains(@class,'item-price')]/span[1])[" + i + "]")).Text));
                     
                 }
-
                 else if (driver.FindElements(By.XPath(GetPrice(i))).Count == 2)
                 {
                     var priceWithDiscount = price[0].Text;
                     allPricesList.Add(ParsePrice(priceWithDiscount));
-                    
                 }
             }
             return allPricesList;
@@ -73,6 +77,7 @@ namespace WEB_PAGE_TESTING.POM
 
         public void CheckListSortedMinToMax()
         {
+            // Vel kvieciama ta pati funkcija...
             var sarasas = GetPriceList();
             for (int i = 1; i < sarasas.Count; i++)
             {

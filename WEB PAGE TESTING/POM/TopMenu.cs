@@ -36,6 +36,8 @@ namespace WEB_PAGE_TESTING.POM
         public string GetUserNameText()
         {
             By userName = By.XPath("//strong[contains(@class,'user-block')]");
+            // Cia minimaliai galima sumazinti, tiesiog norisi kiekvienam faile ka nors parasyti :P
+            // return driver.FindElement(userName).Text;
             string userNameText = driver.FindElement(userName).Text;
             return userNameText;
         }
